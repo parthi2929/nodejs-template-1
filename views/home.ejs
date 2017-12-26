@@ -21,6 +21,47 @@
     Indian Tickers
     </div>
     <div class="col-11" style="background-color:aliceblue;">
+      <div class="row" style="padding: 5px 2px">
+        <span style="padding: 5px">
+            Set Interval 
+        </span><input id="intervalMasterCtrlTxt" value="60" style="width: 100px">
+        <input type="button" id="intervalMasterCtrlBtn" value="Set">
+        <style>
+          #intervalMasterCtrlTxt, #intervalMasterCtrlBtn {
+            border: 1px solid #363c4e;
+            padding: 5px;
+          }
+          #intervalMasterCtrlBtn {
+            padding:5px 15px;
+            border-left: none;
+            background: #131722;
+            color: #758696;
+          }
+          #intervalMasterCtrlTxt:hover, #intervalMasterCtrlBtn:hover {
+            border: 1px solid wheat;
+          }
+          #intervalMasterCtrlBtn:hover {
+            color: #f7f8fa;
+            background: #131722;
+          }
+
+        </style>
+        <script>
+          document.getElementById("intervalMasterCtrlBtn").onclick = function() {
+            var val = document.getElementById("intervalMasterCtrlTxt").value;
+            var ifr = document.getElementsByTagName("iframe");
+            for (var i = 0; i < ifr.length; i++) {
+              try {
+                ctrl = ifr[i].contentWindow._hacky_interval_control;
+                ctrl.setValue(val);
+              } catch(e) {
+                // error will happen for iframes not served from the same host. That's okay,
+                // ignore those.
+              }
+            }
+          }
+        </script>
+      </div>
       <div class="row">
         <div class="col-sm-4" style="height:400px; background-color:cadetblue;">
           <% include partials/home_components/tradingview_btcusd.ejs %>
