@@ -5,7 +5,7 @@ exports.home = function(request,response)
     response.render("home",
         {
             //variable we will use in ejs template and its value..
-            title:"Crypto Bigview 1"
+            title:"Template 1"
         }
     );
 }
